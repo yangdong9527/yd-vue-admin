@@ -11,6 +11,11 @@ Vue.config.productionTip = false
 import './assets/styles/index.scss'
 import 'element-ui/lib/theme-chalk/index.css';
 
+// router 拦截
+import './router/index'
+
+import './assets/icons/index'
+
 Vue.use(ElementUI)
 new Vue({
   router,

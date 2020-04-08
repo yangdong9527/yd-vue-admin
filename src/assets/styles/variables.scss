@@ -1,2 +1,20 @@
 // color
-$blue: #409EFF
+$blue: #409EFF;
+
+// 主题色
+$layoutColor: white;
+$asideColor: #2d353c;
+$mainColor: #d9e0e7;
+$topBarColor: white;
+
+// menus 样式
+$menubgc: #2d353c;
+$menutext: #aaa;
+$activeTextColor: #fff;
+
+
+:export {
+  menubgc: $menubgc;
+  menutext: $menutext;
+  activeTC: $activeTextColor
+}

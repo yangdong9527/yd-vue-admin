@@ -39,6 +39,7 @@ export default {
         this.$notify.success({
           title: res.message
         })
+        this.$router.push({name: 'home'})
       } catch (error) {
         console.log(error)
       }

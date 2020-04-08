@@ -15,3 +15,18 @@ export function registerAPI(data) {
     data
   })
 }
+
+export function getMenus(data) {
+  return request({
+    url: '/user/menu',
+    method: 'get',
+    data
+  })
+}
+
+export function getInfo() {
+  return request({
+    url: '/user/getInfo',
+    method: 'get'
+  })
+}

@@ -1,11 +1,17 @@
 import axios from 'axios'
 import {Notification} from 'element-ui'
+import store from '../store/index'
+import { getCookie } from './auth'
 
 const Service = axios.create( {
   baseURL: 'http://127.0.0.1:7001',
   timeout: 5000
 })
 Service.interceptors.request.use(config => {
+  const token = getCookie('token')
+  if(token) {
+    config.headers['Authorization'] = 'Bearer ' + token
+  }
   return config
 },error => {
   return Promise.reject(error)
