@@ -2,7 +2,6 @@
   <div>
     首页
     <my-card></my-card>
-    <svg-icon icon="arrow_down"></svg-icon>
   </div>
 </template>
 

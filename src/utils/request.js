@@ -30,8 +30,18 @@ Service.interceptors.response.use(response => {
 }, error => {
   if(error.response) {
     // 一种错误 请求成功 但是响应不在 2xx
-    const status = error.status
+    const status = error.response.status
     const res = error.response.data
+    // console.dir(error)
+    if(res.code === 999) {
+      // 登出操作
+      store.dispatch('loginOut').then(res => {
+        console.log(2)
+        location.reload()
+      }).catch(err => {
+        console.log(1)
+      })
+    }
     Notification.error({
       title: res.message
     })

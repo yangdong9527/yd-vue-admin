@@ -23,7 +23,7 @@ router.beforeEach((to, from, next) => {
             router.addRoutes(asyncRouter)
             next({...to, replace: true})
           })
-        })
+        }).catch(err => {})
       }else {
         // 有菜单了
         next()

@@ -30,7 +30,7 @@ const user = {
       })
     },
     loginOut({commit}) {
-      return new Promise((resove, reject) => {
+      return new Promise((resolve, reject) => {
         removeCookie('token')
         removeCookie('user')
         commit('SET_INFO', '')

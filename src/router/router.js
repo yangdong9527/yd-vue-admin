@@ -24,11 +24,13 @@ export const routes = [
   {
     path: '/',
     component: Layout,
-    hidden: true,
+    hidden: false,
+    alwaysShow: false,
     children: [
       {
         path: 'home',
         name: 'home',
+        hidden: false,
         component: () => import('@/views/home/index'),
         meta: {
           title: '首页'

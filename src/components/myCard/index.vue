@@ -1,13 +1,13 @@
 <template>
-  <div class="card-wrap">
+  <div class="card-wrap" v-if="show">
     <div class="card-title">
       <slot name="title">
         <div class="default-title">
-          <h3>标题</h3>
+          <h3>{{title}}</h3>
           <div class="icon-wrap">
-            <div class="icon-item">1</div>
-            <div class="icon-item" @click="switchCon">消失</div>
-            <div class="icon-item">1</div>
+            <svg-icon icon="shuaxin" class="icon-item"></svg-icon>
+            <svg-icon icon="suoxiao" class="icon-item" @click.native="switchCon"></svg-icon>
+            <svg-icon icon="guanbi" class="icon-item" @click.native="close"></svg-icon>
           </div>
         </div>
       </slot>
@@ -22,6 +22,9 @@
           <br />1
           <br />
         </slot>
+        <div class="footer">
+          <slot name="footer"></slot>
+        </div>
       </div>
     </collapse>
   </div>
@@ -34,14 +37,29 @@ export default {
   components: {
     collapse
   },
+  props: {
+    title: {
+      type: String,
+      default: "标题"
+    }
+  },
   data() {
     return {
-      showContent: true
+      showContent: true,
+      show: true
     };
   },
   methods: {
     switchCon() {
+      this.$emit("collapse");
       this.showContent = !this.showContent;
+    },
+    close() {
+      this.$emit("close");
+      this.show = false;
+    },
+    reset() {
+      this.$emit("reset");
     }
   }
 };
@@ -49,6 +67,7 @@ export default {
 
 <style scoped lang="scss">
 .card-wrap {
+  position: relative;
   width: 100%;
   border-radius: 3px 3px 0 0;
   box-sizing: border-box;
