@@ -5,7 +5,7 @@
         <div class="default-title">
           <h3>{{title}}</h3>
           <div class="icon-wrap">
-            <svg-icon icon="shuaxin" class="icon-item"></svg-icon>
+            <svg-icon icon="shuaxin" class="icon-item" @click.native="reset"></svg-icon>
             <svg-icon icon="suoxiao" class="icon-item" @click.native="switchCon"></svg-icon>
             <svg-icon icon="guanbi" class="icon-item" @click.native="close"></svg-icon>
           </div>
@@ -14,13 +14,10 @@
     </div>
     <collapse>
       <div class="container" v-show="showContent">
+        <div class="header">
+          <slot name="header"></slot>
+        </div>
         <slot name="content">
-          1
-          <br />1
-          <br />1
-          <br />1
-          <br />1
-          <br />
         </slot>
         <div class="footer">
           <slot name="footer"></slot>
@@ -72,6 +69,7 @@ export default {
   border-radius: 3px 3px 0 0;
   box-sizing: border-box;
   user-select: none;
+  overflow: hidden;
   .card-title {
     height: 40px;
     background-color: #242a30;
@@ -101,6 +99,10 @@ export default {
   .container {
     background-color: #fff;
     border-radius: 0 0 3px 3px;
+    .header {
+      padding: 10px 15px;
+      box-sizing: border-box;
+    }
   }
 }
 </style>

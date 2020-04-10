@@ -14,42 +14,41 @@
 </template>
 
 <script>
+import Velocity from 'velocity-animate'
 export default {
   name: "collapse",
+  props: {
+    duration:{
+      type: Number,
+      default: 300
+    }
+  },
   data() {
     return {
-      height: ""
     };
   },
   methods: {
     beforeEnter(el) {
-      el.classList.add("trans");
-      el.style.height = "0px";
+      el.style.height = '0';
     },
-    enter(el, done) {
+    enter(el,done) {
       el.style.overflow = "hidden";
-      el.style.height = this.height + "px";
+      Velocity(el, {height: el.scrollHeight+'px'}, {duration: this.duration,complete: done})
     },
-    afterEnter(el) {},
+    afterEnter(el) {
+      el.style.height = ''
+    },
     beforeLeave(el) {
-      this.height = el.scrollHeight;
-      el.style.height = 90 + "px";
-      el.style.overflow = el.offsetHeight+"hidden";
+      el.style.height = el.scrollHeight + "px";
     },
     leave(el, done) {
-      el.classList.add("trans");
-      el.style.height = 0;
+      Velocity(el, {height: 0}, {duration: this.duration}, {complete: done})
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-.collapse-wrap {
-  transition: all 0.3s;
-}
-.trans {
-  transition: all 0.3s;
-}
+
 </style>
 
