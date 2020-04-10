@@ -1,6 +1,6 @@
 <template>
   <div class="card-wrap" v-if="show">
-    <div class="card-title">
+    <div class="card-title" :style="`height: ${titleHeight}px`">
       <slot name="title">
         <div class="default-title">
           <h3>{{title}}</h3>
@@ -38,6 +38,9 @@ export default {
     title: {
       type: String,
       default: "标题"
+    },
+    titleHeight: {
+      default: 40
     }
   },
   data() {
@@ -71,7 +74,6 @@ export default {
   user-select: none;
   overflow: hidden;
   .card-title {
-    height: 40px;
     background-color: #242a30;
     padding: 0 15px;
     box-sizing: border-box;
@@ -99,8 +101,9 @@ export default {
   .container {
     background-color: #fff;
     border-radius: 0 0 3px 3px;
+    border: 1px solid rgba(0,0,0,.2);
+    box-sizing: border-box;
     .header {
-      padding: 10px 15px;
       box-sizing: border-box;
     }
   }

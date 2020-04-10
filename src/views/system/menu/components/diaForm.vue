@@ -8,7 +8,7 @@
       :close-on-click-modal="false"
       :title="isAdd ? '新增菜单' : '修改菜单'"
     >
-      <el-form ref="form" :model="form" size="small" label-width="80px" :inline="true">
+      <el-form ref="form" :rules="rules" :model="form" size="small" label-width="80px" :inline="true">
         <el-form-item label="菜单类型" style="width: 100%" prop="type">
           <el-radio-group v-model="form.type">
             <el-radio-button
@@ -51,20 +51,20 @@
             <el-input v-model="form.permission" placeholder="权限的标识"></el-input>
           </el-form-item>
         </template>
-        <el-form-item label="排序" style="width: 160px" prop="sort">
+        <el-form-item label="菜单排序" style="width: 160px" prop="sort">
           <el-input-number v-model="form.sort" controls-position="right" :min="1" style="width: 80px"></el-input-number>
         </el-form-item>
         <template v-if="form.type !== 2">
           <el-form-item label="是否隐藏" style="width: 170px" prop="hidden">
             <el-radio-group v-model="form.hidden">
-              <el-radio-button :label="true">是</el-radio-button>
-              <el-radio-button :label="false">否</el-radio-button>
+              <el-radio-button :label="1">是</el-radio-button>
+              <el-radio-button :label="0">否</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="是否一直显示" label-width="100px" style="width: 190px" prop="alwaysShow">
             <el-radio-group v-model="form.alwaysShow">
-              <el-radio-button :label="true">是</el-radio-button>
-              <el-radio-button :label="false">否</el-radio-button>
+              <el-radio-button :label="1">是</el-radio-button>
+              <el-radio-button :label="0">否</el-radio-button>
             </el-radio-group>
           </el-form-item>
         </template>
@@ -107,7 +107,14 @@ export default {
         { type: 1, label: "菜单" },
         { type: 2, label: "按钮" }
       ],
-      isAdd: true
+      isAdd: true,
+      rules: {
+        pid: [{ required: true, message: '请选择父级', trigger: 'change'}],
+        title: [{ required: true, message: '请输入菜单名称', trigger: 'blur'}],
+        name : [{ required: true, message: '请输入路由名称', trigger: 'blur'}],
+        path :[{ required: true, message: '请输入路由地址', trigger: 'blur'}],
+        component :[{ required: true, message: '请输入组件路径', trigger: 'blur'}]
+      }
     };
   },
   methods: {
@@ -134,11 +141,15 @@ export default {
       };
     },
     confirm() {
-      if(this.isAdd) {
-        this.$emit('add', this.form)
-      }else {
-        this.$emit('update', this.form)
-      }
+      this.$refs.form.validate(bool => {
+        if(bool) {
+          if(this.isAdd) {
+            this.$emit('add', this.form)
+          }else {
+            this.$emit('update', this.form)
+          }
+        }
+      })
     }
   }
 };

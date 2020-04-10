@@ -1,10 +1,16 @@
 <template>
-  <div>user</div>
+  <div class="page-container">
+    <myCard></myCard>
+  </div>
 </template>
 
 <script>
+import myCard from '@/components/myCard/index'
 export default {
-  name: "",
+  name: 'user',
+  components: {
+    myCard
+  },
   data() {
     return {
 

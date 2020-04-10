@@ -39,7 +39,6 @@
         </template>
       </my-card>
     </div>
-
     <dia-form ref="dia" @add="handleAdd" @update="handleUpdate"></dia-form>
   </div>
 </template>
@@ -132,5 +131,9 @@ export default {
 .menu-table {
   box-sizing: border-box;
   padding: 15px;
+}
+.menu-header {
+  padding: 10px 15px;
+  box-sizing: border-box;
 }
 </style>
