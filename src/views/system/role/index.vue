@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <my-card title="角色列表">
+    <my-card title="角色列表" @reset="getList">
       <template #header>
         <div class="padding-bar">
           <el-button size="small" type="primary" @click="addBtn">新增</el-button>
@@ -8,7 +8,7 @@
       </template>
       <template v-slot:content>
         <div class="padding-bar">
-          <el-table :data="list" size="small">
+          <el-table :data="list" size="small" v-loading="loading">
             <el-table-column label="角色名称" prop="name"></el-table-column>
             <el-table-column label="角色类型" prop="type">
               <template v-slot="{row}">
@@ -63,7 +63,8 @@ export default {
       page: {
         pageNum: 1,
         pageSize: 10
-      }
+      },
+      loading: false
     };
   },
   created() {
@@ -71,10 +72,14 @@ export default {
   },
   methods: {
     async getList() {
-      let params = this.page
-      const result = await roleApi.getRole(params);
-      this.list = result.data;
-      this.total = result.count;
+      this.loading = true
+      try {
+        let params = this.page
+        const result = await roleApi.getRole(params);
+        this.list = result.data;
+        this.total = result.count;
+      } catch (error) {}
+      this.loading = false
     },
     async addBtn() {
       try {

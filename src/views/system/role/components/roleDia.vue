@@ -9,7 +9,7 @@
     :title="isAdd ? '新增角色' : '编辑角色'">
       <el-row :gutter="20">
         <el-col :span="10">
-          <el-form :model="form" ref="form" size="small" label-width="auto">
+          <el-form :model="form" ref="form" size="small" label-width="auto" :rules="rules">
             <el-form-item label="角色名称" prop="name">
               <el-input v-model="form.name" placeholder="请输入角色名称"></el-input>
             </el-form-item>
@@ -73,6 +73,11 @@ export default {
       tree: [],
       treeProp: {
         label: 'title'
+      },
+      rules: {
+        name: { required: true, message: '请输入角色名称', trigger: 'blur' },
+        type: { required: true, message: '请选择类型', trigger: 'change' },
+        level: { required: true, message: '', trigger: 'blur' }
       }
     }
   },
@@ -93,14 +98,18 @@ export default {
       })
     },
     confirm() {
-      if(this.form.type === 2) {
-        this.form.menus = this.$refs.tree.getCheckedKeys()
-      }
-      if(this.isAdd) {
-        this.$emit('add', this.form)
-      }else {
-        this.$emit('update', this.form)
-      }
+      this.$refs.form.validate(bool => {
+        if(bool) {
+          if(this.form.type === 2) {
+            this.form.menus = this.$refs.tree.getCheckedKeys()
+          }
+          if(this.isAdd) {
+            this.$emit('add', this.form)
+          }else {
+            this.$emit('update', this.form)
+          }
+        }
+      })
     }
   }
 }
