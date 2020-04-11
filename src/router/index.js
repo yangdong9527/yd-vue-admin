@@ -11,19 +11,18 @@ router.beforeEach((to, from, next) => {
       next()
     }else {
       // 登录了 
-      if(store.getters.asyncRouter.length === 0 ){
+      if(store.getters.info === '') {
+        store.dispatch('getInfo').then(res => {
+          getUserMenu(next, to)
+        }).catch(err => {
+          store.dispatch('loginOut').then(res => {
+            location.reload()
+          })
+        })
+      }else if(store.getters.asyncRouter.length === 0 ){
         // 没有获取菜单 
         // 加载菜单
-        getMenus().then(res => {
-          // 修改过滤路由 得到真正的路由
-          const asyncRouter = filterMenusToRouter(res.data)
-          // 生成菜单 然后将刚才得到的路由添加到 router 中
-          store.dispatch('set_menus', asyncRouter).then(res => {
-            asyncRouter.push({path: '*', redirect: '/404', hidden: true})
-            router.addRoutes(asyncRouter)
-            next({...to, replace: true})
-          })
-        }).catch(err => {})
+        getUserMenu(next, to)
       }else {
         // 有菜单了
         next()
@@ -65,4 +64,21 @@ function filterMenusToRouter(arr) {
 
 function loadMenu(path) {
   return () => import(`@/views/${path}.vue`)
+}
+
+function getUserMenu(next, to) {
+  getMenus().then(res => {
+    // 修改过滤路由 得到真正的路由
+    const asyncRouter = filterMenusToRouter(res.data)
+    // 生成菜单 然后将刚才得到的路由添加到 router 中
+    store.dispatch('set_menus', asyncRouter).then(res => {
+      asyncRouter.push({path: '*', redirect: '/404', hidden: true})
+      router.addRoutes(asyncRouter)
+      next({...to, replace: true})
+    })
+  }).catch(err => {
+    store.dispatch('loginOut').then(res => {
+      location.reload()
+    })
+  })
 }

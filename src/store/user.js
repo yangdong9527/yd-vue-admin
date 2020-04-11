@@ -2,7 +2,7 @@ import { loginAPI , getInfo} from '@/api/login.js'
 import { getCookie, setCookie, removeCookie } from '@/utils/auth.js'
 const user = {
   state: {
-    info: getCookie('user') || '',
+    info: '',
     token: getCookie('token') || ''
   },
   mutations: {
@@ -22,7 +22,6 @@ const user = {
           commit('SET_INFO', {info, menus})
           commit('SET_TOKEN', token)
           setCookie('token', token)
-          setCookie('user', {info, menus})
           resolve(res)
         }).catch(error => {
           reject(error)
@@ -41,11 +40,7 @@ const user = {
     getInfo({commit}) {
       return new Promise((resolve, reject) => {
         getInfo().then(res => {
-          let {info, menus, token} = res.data
-          commit('SET_INFO', info)
-          commit('SET_ROLEKEY', menus)
-          commit('SET_TOKEN', token)
-          setCookie('token', token)
+          commit('SET_INFO', res.data)
           resolve(res)
         }).catch(err => {
           reject(err)
