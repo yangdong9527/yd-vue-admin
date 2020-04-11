@@ -1,11 +1,10 @@
-import { getCookie, setCookie  } from '@/utils/auth.js'
 const app = {
   state: {
-    isCollapse: getCookie('isCollapse') || false
+    isCollapse: JSON.parse(sessionStorage.getItem('isCollapse')) || false
   },
   mutations: {
     SET_ISCOLLAPSE(state, val) {
-      setCookie('isCollapse', val)
+      sessionStorage.setItem('isCollapse', val)
       state.isCollapse = val
     }
   },
