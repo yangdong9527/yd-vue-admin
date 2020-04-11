@@ -4,6 +4,8 @@ import router from './router/router'
 import store from './store'
 import ElementUI from 'element-ui';
 import Moment from 'moment'
+import Fragment from 'vue-fragment'
+Vue.use(Fragment.Plugin)
 
 
 Vue.config.productionTip = false
@@ -19,6 +21,8 @@ import './assets/icons/index'
 // moment
 Moment.locale = 'zh-cn'
 Vue.prototype.$moment = Moment
+
+import '@/utils/directive.js'
 
 Vue.use(ElementUI)
 new Vue({

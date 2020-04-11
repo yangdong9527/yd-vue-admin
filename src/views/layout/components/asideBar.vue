@@ -2,10 +2,12 @@
   <div class="aside-wrap">
     <el-menu
       class="el-menu-vertical-demo"
+      :collapse="isCollapse"
       :default-active="defaultPath"
       :router="true"
       :background-color="menuColor.menubgc"
       :text-color="menuColor.menutext"
+      :collapse-transition="false"
       :active-text-color="menuColor.activeTC">
       <menu-item v-for="(item) in menus" :key="item.name"  :item="item" basePath="/"></menu-item>
     </el-menu>
@@ -20,11 +22,6 @@ export default {
   components: {
     menuItem
   },
-  data() {
-    return {
-      
-    }
-  },
   computed: {
     menus() {
       return this.$store.getters.menus
@@ -34,6 +31,9 @@ export default {
     },
     menuColor() {
       return menuColor
+    },
+    isCollapse() {
+      return this.$store.getters.isCollapse
     }
   }
 }

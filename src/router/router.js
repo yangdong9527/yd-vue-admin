@@ -26,6 +26,9 @@ export const routes = [
     component: Layout,
     hidden: false,
     alwaysShow: false,
+    meta: {
+      icon: 'el-icon-s-home'
+    },
     children: [
       {
         path: 'home',
@@ -33,7 +36,8 @@ export const routes = [
         hidden: false,
         component: () => import('@/views/home/index'),
         meta: {
-          title: '首页'
+          title: '首页',
+          icon: 'el-icon-s-home'
         }
       }
     ]

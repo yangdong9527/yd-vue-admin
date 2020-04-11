@@ -1,16 +1,22 @@
 <template>
-  <div v-if="!item.hidden">
+  <fragment v-if="!item.hidden">
     <template v-if="hasOneShowChildren() && (!oneShowItem.children || oneShowItem.noShowChildren) && !item.allwasShow">
-      <el-menu-item :index="routePath(oneShowItem.path)">{{oneShowItem.meta.title}}</el-menu-item>
+      <el-menu-item :index="routePath(oneShowItem.path)">
+        <i v-if="item.meta && item.meta.icon" :class="item.meta.icon"></i>
+        <span>{{oneShowItem.meta.title}}</span>
+      </el-menu-item>
     </template>
 
     <el-submenu v-else :index="routePath(item.path)">
       <template slot="title">
-        <span>{{item.meta.title}}</span>
+        <div class="title">
+          <i v-if="item.meta && item.meta.icon" :class="item.meta.icon"></i>
+          <span>{{item.meta.title}}</span>
+        </div>
       </template>
       <menu-item v-for="v in item.children" :key="v.path" :item="v" :basePath="routePath(item.path)"></menu-item>
     </el-submenu>
-  </div>
+  </fragment>
 </template>
 
 <script>

@@ -4,7 +4,7 @@
       <my-card title="菜单表格" @reset="getList">
         <template v-slot:header>
           <div class="menu-header">
-            <el-button type="primary" size="small" @click="addBtn">新增</el-button>
+            <el-button type="primary" size="small" @click="addBtn" v-checkbtn="'menu:add'">新增</el-button>
           </div>
         </template>
         <template v-slot:content>
@@ -30,8 +30,8 @@
               </el-table-column>
               <el-table-column label="操作" fixed="right" width="200px">
                 <template v-slot="{row}">
-                  <el-button type="warning" size="mini" @click="editBtn(row)">编辑</el-button>
-                  <el-button type="danger" size="mini" @click="delBtn(row)">删除</el-button>
+                  <el-button type="warning" size="mini" @click="editBtn(row)" v-checkbtn="'menu:edit'">编辑</el-button>
+                  <el-button type="danger" size="mini" @click="delBtn(row)" v-checkbtn="'menu:delete'">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>

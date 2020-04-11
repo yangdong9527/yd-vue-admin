@@ -3,7 +3,7 @@
     <my-card title="角色列表" @reset="getList">
       <template #header>
         <div class="padding-bar">
-          <el-button size="small" type="primary" @click="addBtn">新增</el-button>
+          <el-button size="small" type="primary" @click="addBtn" v-checkbtn="'role:add'">新增</el-button>
         </div>
       </template>
       <template v-slot:content>
@@ -25,8 +25,8 @@
             </el-table-column>
             <el-table-column label="操作" width="180px" fixed="right">
               <template v-slot="{row}">
-                <el-button type="warning" size="mini" @click="editBtn(row)">编辑</el-button>
-                <el-button type="danger" size="mini" @click="delBtn(row)">删除</el-button>
+                <el-button type="warning" size="mini" @click="editBtn(row)" v-checkbtn="'role:edit'">编辑</el-button>
+                <el-button type="danger" size="mini" @click="delBtn(row)" v-checkbtn="'role:delete'">删除</el-button>
               </template>
             </el-table-column>
           </el-table>

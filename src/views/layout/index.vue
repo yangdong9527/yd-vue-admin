@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-wrap">
+  <div class="layout-wrap" :class="isCollapse ? 'close' : ''">
     <aside-bar></aside-bar>
     <div class="layout-main">
       <top-bar></top-bar>
@@ -17,9 +17,9 @@ export default {
     asideBar,
     topBar
   },
-  data() {
-    return {
-
+  computed: {
+    isCollapse() {
+      return this.$store.getters.isCollapse
     }
   }
 }

@@ -10,6 +10,7 @@
     height: 100%;
     user-select: none;
     background-color: $asideColor;
+    transition: width .3s;
   }
 
   .layout-main {
@@ -20,6 +21,7 @@
     box-sizing: border-box;
     padding-top: 50px;
     background-color: $mainColor;
+    transition: all .3s;
 
     .top-bar {
       position: fixed;
@@ -28,7 +30,21 @@
       height: 50px;
       box-shadow: 0 2px 2px 0px rgba(0, 0, 0, .2);
       background-color: $topBarColor;
+      transition: width .3s;
     }
+  }
+}
+
+.layout-wrap.close {
+  .aside-wrap {
+    width: 64px;
+  }
+  .layout-main {
+    width: calc(100% - 64px);
+    margin-left: 64px;
+  }
+  .top-bar {
+    width: calc(100% - 64px);
   }
 }
 

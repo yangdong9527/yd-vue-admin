@@ -3,7 +3,7 @@
     <myCard title="用户列表" @reset="getList">
       <template #header>
         <div class="padding-bar">
-          <el-button type="primary" size="small" @click="addBtn">新增</el-button>
+          <el-button type="primary" size="small" @click="addBtn" v-checkbtn="'user:add'">新增</el-button>
         </div>
       </template>
       <template #content>
@@ -19,8 +19,8 @@
             </el-table-column>
             <el-table-column label="操作">
               <template v-slot="{row}">
-                <el-button type="warning" size="mini" @click="editBtn(row)">编辑</el-button>
-                <el-button type="danger" size="mini" @click="delBtn(row)">删除</el-button>
+                <el-button type="warning" size="mini" @click="editBtn(row)" v-checkbtn="'user:edit'">编辑</el-button>
+                <el-button type="danger" size="mini" @click="delBtn(row)" v-checkbtn="'user:delete'">删除</el-button>
               </template> 
             </el-table-column>
           </el-table>

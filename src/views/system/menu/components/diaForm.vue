@@ -100,7 +100,8 @@ export default {
         permission: "",
         alwaysShow: true,
         pid: null,
-        type: 0
+        type: 0,
+        name: '',
       },
       typeOptions: [
         { type: 0, label: "目录" },
