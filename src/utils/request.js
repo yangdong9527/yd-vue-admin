@@ -4,7 +4,7 @@ import store from '../store/index'
 import { getCookie } from './auth'
 
 const Service = axios.create( {
-  baseURL: 'http://127.0.0.1:7001',
+  baseURL: process.env.NODE_ENV === 'production' ? 'http://118.31.21.116:7001' : 'http://127.0.0.1:7001',
   timeout: 5000
 })
 Service.interceptors.request.use(config => {

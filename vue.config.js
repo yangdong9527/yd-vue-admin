@@ -3,6 +3,8 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
+  publicPath: './',
+  productionSourceMap: false,
   chainWebpack(config) {
     config.module
       .rule('svg')
@@ -20,5 +22,4 @@ module.exports = {
       })
       .end()
   }
-
 }
