@@ -1,0 +1,22 @@
+.xzty-enter {
+  transform: translateX(-1200px);
+  opacity: .1;
+}
+
+.xzty-enter-to {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.xzty-enter-active, .xzty-leave-active{
+  transition: all .6s;
+}
+
+.xzty-leave {
+  transform: translateX(0);
+  opacity: 1;
+}
+.xzty-leave-to {
+  transform: translateX(1200px);
+  opacity: .1;
+}
