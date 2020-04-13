@@ -17,15 +17,16 @@
     position: relative;
     margin-left: 200px;
     width: calc(100% - 200px);
-    height: 100%;
+    min-height: 100%;
     box-sizing: border-box;
-    padding-top: 90px;
+    padding-top: 50px;
+    padding-bottom: 30px;
     background-color: $mainColor;
     transition: all .2s;
-
     .top-bar {
       position: fixed;
       top: 0;
+      z-index: 999;
       width: calc(100% - 200px);
       height: 50px;
       box-shadow: 0 2px 2px 0px rgba(0, 0, 0, .2);
@@ -33,16 +34,15 @@
       transition: width .2s;
     }
     .bread-crumb {
-      position: fixed;
-      top: 50px;
       height: 40px;
-      width: calc(100% - 200px);
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-sizing: border-box;
       padding: 0 15px;
       transition: width .2s;
+      background-color: $mainColor;
     }
   }
 }
@@ -55,7 +55,7 @@
     width: calc(100% - 64px);
     margin-left: 64px;
   }
-  .top-bar, .bread-crumb {
+  .top-bar{
     width: calc(100% - 64px);
   }
 }
