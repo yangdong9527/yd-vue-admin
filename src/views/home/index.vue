@@ -1,7 +1,6 @@
 <template>
   <div>
     首页
-    <my-card></my-card>
   </div>
 </template>
 

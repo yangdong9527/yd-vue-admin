@@ -19,7 +19,7 @@
     width: calc(100% - 200px);
     height: 100%;
     box-sizing: border-box;
-    padding-top: 50px;
+    padding-top: 90px;
     background-color: $mainColor;
     transition: all .2s;
 
@@ -30,6 +30,18 @@
       height: 50px;
       box-shadow: 0 2px 2px 0px rgba(0, 0, 0, .2);
       background-color: $topBarColor;
+      transition: width .2s;
+    }
+    .bread-crumb {
+      position: fixed;
+      top: 50px;
+      height: 40px;
+      width: calc(100% - 200px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 15px;
       transition: width .2s;
     }
   }
@@ -43,7 +55,7 @@
     width: calc(100% - 64px);
     margin-left: 64px;
   }
-  .top-bar {
+  .top-bar, .bread-crumb {
     width: calc(100% - 64px);
   }
 }

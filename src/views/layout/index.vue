@@ -3,6 +3,7 @@
     <aside-bar></aside-bar>
     <div class="layout-main">
       <top-bar></top-bar>
+      <Breadcrumb></Breadcrumb>
       <router-view></router-view>
     </div>
   </div>
@@ -11,11 +12,13 @@
 <script>
 import asideBar from './components/asideBar'
 import topBar from './components/topBar'
+import Breadcrumb from '@/components/Breadcrumb/index'
 export default {
   name: 'layout',
   components: {
     asideBar,
-    topBar
+    topBar,
+    Breadcrumb
   },
   computed: {
     isCollapse() {

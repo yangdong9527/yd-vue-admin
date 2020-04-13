@@ -57,6 +57,9 @@ export default {
   }
   .left-wrap {
     font-size: 22px;
+    i {
+      margin-right: 20px;
+    }
   }
 }
 </style>
