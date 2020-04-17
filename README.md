@@ -1,6 +1,6 @@
 # YD-VUE-ADMIN
 
-项目描述 : 前端使用 vue+element-ui 后端使用 egg.js+mysql , 权限控制采用 RBAC，动态生成菜单路由
+项目描述 : 前端使用 vue+element-ui 后端使用 egg.js+mysql , 目前实现了按钮级权限的控制,修改完权限需要刷新获取最新的权限
 
 ### 项目源码
 
